@@ -28,10 +28,10 @@ function jsonResponse(data, status = 200) {
 
 function extractStats(html) {
     const points = html.match(
-        /<b class="op-scoreboard-num">(\d+)<\/b>[\s\S]*?<span class="op-scoreboard-unit">points<\/span>/
+        /<b class="op-scoreboard-num">([\d,]+(?:\.\d+)?)<\/b>[\s\S]*?<span class="op-scoreboard-unit">points<\/span>/
     );
     const qsos = html.match(
-        /<span class="operator-minis">[\s\S]*?<b>(\d+)<\/b>\s*QSOs/
+        /<span class="operator-minis">[\s\S]*?<b>([\d,]+)<\/b>\s*QSOs/
     );
     return {points: points ? points[1] : null, qsos: qsos ? qsos[1] : null};
 }
