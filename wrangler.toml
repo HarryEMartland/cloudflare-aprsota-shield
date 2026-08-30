@@ -1,0 +1,9 @@
+name = "aprsota-points"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[cache]
+enabled = true
+
+[vars]
+CACHE_TTL = "3600"

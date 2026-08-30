@@ -1,0 +1,14 @@
+{
+  "name": "cloudflare-aprsota-shield",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shields.io badge for APRS OTA users showing points and QSO count",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.127.1"
+  }
+}
