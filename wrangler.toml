@@ -7,3 +7,7 @@ enabled = true
 
 [vars]
 CACHE_TTL = "3600"
+
+[observability]
+enabled = true
+head_sampling_rate = 0.1

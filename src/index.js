@@ -41,6 +41,8 @@ export default {
         const url = new URL(request.url);
         const callsign = (url.searchParams.get("callsign") || url.searchParams.get("call") || "").trim().toUpperCase();
 
+        console.log(`Request for callsign: ${callsign || "(none)"}`);
+
         if (!callsign) {
             return jsonResponse({error: "Missing callsign query parameter. e.g. ?callsign=M7HDD"}, 400);
         }
