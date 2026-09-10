@@ -1,5 +1,6 @@
 const APRSOTA_BASE = "https://aprsota.org";
 const SHIELDS_BASE = "https://img.shields.io/badge";
+const CALLSIGN_RE = /^[A-Z0-9]{1,6}$/i;
 const BADGE_DEFAULTS = {
     label: "APRS OTA",
     style: "flat",
@@ -38,6 +39,10 @@ function extractStats(html) {
 
 export default {
     async fetch(request, env) {
+        if (request.method !== "GET") {
+            return jsonResponse({error: "Method not allowed"}, 405);
+        }
+
         const url = new URL(request.url);
         const callsign = (url.searchParams.get("callsign") || url.searchParams.get("call") || "").trim().toUpperCase();
 
@@ -45,6 +50,10 @@ export default {
 
         if (!callsign) {
             return jsonResponse({error: "Missing callsign query parameter. e.g. ?callsign=M7HDD"}, 400);
+        }
+
+        if (!CALLSIGN_RE.test(callsign)) {
+            return jsonResponse({error: "Invalid callsign format. Must be 1-6 alphanumeric characters."}, 400);
         }
 
         let target;
