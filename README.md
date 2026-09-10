@@ -28,53 +28,13 @@ The worker takes the callsign as a query parameter:
 https://<your-worker>.workers.dev/?callsign=M7HDD
 ```
 
-It responds with one of:
-
-| Mode | How to trigger | Response |
-|------|----------------|----------|
-| **SVG** (default) | no extra params | `image/svg+xml` badge body |
-| **Redirect** | default | `302` to the shields.io badge URL |
-| **JSON** | add `&json` | JSON with callsign, points, qsos, badgeUrl |
-| **No redirect** | add `redirect=0` | SVG body instead of a redirect |
-
-### Redirect (recommended for Markdown/HTML)
-
-Redirect mode is the easiest to use in badges that are cached by GitHub, since the
-final URL points straight at shields.io so the client-side cache key stays stable:
+The response is a redirect to a badge svg.
 
 ```html
 <img src="https://<your-worker>.workers.dev/?callsign=M7HDD" alt="APRS OTA">
 ```
 
-### JSON
-
-```bash
-curl "https://<your-worker>.workers.dev/?callsign=M7HDD&json"
-```
-
-```json
-{
-  "callsign": "M7HDD",
-  "points": 40,
-  "qsos": 20,
-  "badgeUrl": "https://img.shields.io/badge/APRS%20OTA-40%20pts%20%2F%2020%20QSOs?..."
-}
-```
-
 ## Configuration
-
-### Approved callsigns (optional)
-
-By default the worker serves any callsign. To restrict it to a fixed allow-list, set
-the `APPROVED_CALLSIGNS` environment variable in `wrangler.toml` (or as a secret) to a
-comma-separated list:
-
-```toml
-[vars]
-APPROVED_CALLSIGNS = "M7HDD,G0ABC,VA7XYZ"
-```
-
-Requests for any callsign not in the list return `403`. Leave it empty to allow all.
 
 ## Caching
 

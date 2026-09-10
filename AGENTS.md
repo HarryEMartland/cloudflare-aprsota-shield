@@ -16,15 +16,17 @@ scrapes the operator's public page and proxies a generated badge.
 | Command | Purpose |
 |---------|---------|
 | `npm run dev` | Run the worker locally (`wrangler dev`) |
-| `npm run deploy` | Deploy to Cloudflare (`wrangler deploy`) |
+| `npm test` | Run the test suite (`node --test`) |
+| `npm run deploy` | Deploy to Cloudflare (`wrangler deploy`); runs `npm test` first via `predeploy` |
 
-There is no lint, test, or typecheck script configured. To syntax-check a change
+There is no lint or typecheck script configured. To syntax-check a change
 without deploying, you can run `node --check src/index.js` (the file uses ES
 modules but is still syntactically validatable).
 
 ## Key files
 
 - `src/index.js` — the entire worker implementation
+- `test/index.test.js` — the test suite; mocks the aprsota.org fetch via `node:test`'s `t.mock`
 - `wrangler.toml` — Worker config (name, compatibility date, `[vars]`)
 - `README.md` — end-user documentation
 - `package.json` — scripts and dependencies

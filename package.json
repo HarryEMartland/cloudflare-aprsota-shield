@@ -4,8 +4,11 @@
   "private": true,
   "description": "Shields.io badge for APRS OTA users showing points and QSO count",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
+    "test": "node --test",
+    "predeploy": "npm test",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
