@@ -13,10 +13,12 @@ function badgeUrl({
                       label = BADGE_DEFAULTS.label,
                       color = BADGE_DEFAULTS.color,
                       style = BADGE_DEFAULTS.style,
-                      labelColor = BADGE_DEFAULTS.labelColor
+                      labelColor = BADGE_DEFAULTS.labelColor,
+                      link
                   }) {
     const parts = [encodeURIComponent(label), encodeURIComponent(message), encodeURIComponent(color)];
-    return `${SHIELDS_BASE}/${parts.join("-")}`;
+    const base = `${SHIELDS_BASE}/${parts.join("-")}`;
+    return link ? `${base}?link=${encodeURIComponent(link)}` : base;
 }
 
 
@@ -85,7 +87,7 @@ export default {
         return new Response(null, {
             status: 302,
             headers: {
-                Location: badgeUrl({message}),
+                Location: badgeUrl({message, link: `${APRSOTA_BASE}/${callsign}`}),
                 "Cache-Control": `public, max-age=${ttl}, s-maxage=${ttl}`
             }
         });

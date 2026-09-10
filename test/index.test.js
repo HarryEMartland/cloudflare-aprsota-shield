@@ -98,7 +98,7 @@ test("redirects to a shields.io badge with points, QSOs and colour", async (t) =
     assert.equal(res.status, 302);
     assert.equal(
         res.headers.get("Location"),
-        `${SHIELDS_BASE}/APRS%20OTA-1%2C234%20pts%20%2F%2056%20QSOs-orange`
+        `${SHIELDS_BASE}/APRS%20OTA-1%2C234%20pts%20%2F%2056%20QSOs-orange?link=${encodeURIComponent("https://aprsota.org/M7HDD")}`
     );
 });
 
