@@ -25,13 +25,13 @@ npm run dev
 The worker takes the callsign as a query parameter:
 
 ```
-https://<your-worker>.workers.dev/?callsign=M7HDD
+https://aprsota-points.harryemartland.workers.dev?callsign=M7HDD
 ```
 
 The response is a redirect to a badge svg.
 
 ```html
-<img src="https://<your-worker>.workers.dev/?callsign=M7HDD" alt="APRS OTA">
+<object data="https://aprsota-points.harryemartland.workers.dev?callsign=M7HDD" />
 ```
 
 ## Configuration
